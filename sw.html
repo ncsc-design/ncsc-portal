@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCSC Master Inventory & Logistics Portal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="login-theme">
+
+    <div id="loginScreen" class="login-wrapper animate-whole-login">
+        <div class="login-card" id="loginCard">
+            <img src="png.png" alt="NCSC Logo" class="login-logo">
+            <h2>Nakano College Sounds Crew</h2>
+            <p class="tagline">The Official Asset & Operations Platform</p>
+            
+            <form id="loginForm">
+                <div class="input-group">
+                    <label for="username">Crew ID / Username</label>
+                    <input type="text" id="username" placeholder="Enter Username" autocomplete="off" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Security Password</label>
+                    <input type="password" id="password" placeholder="Enter Password" required>
+                </div>
+                <button type="submit" class="btn-login">Authorize Connection</button>
+                <div id="loginError" class="error-msg">Access Denied. Invalid Crew Hash.</div>
+            </form>
+
+            <div class="login-footer-note">
+                <p>2026 All Rights Reserved &copy; Nakano College Sound Crew</p>
+            </div>
+        </div>
+
+        <div class="success-overlay" id="successOverlay">
+            <div class="success-checkmark">
+                <div class="check-icon">
+                    <span class="icon-line line-tip"></span>
+                    <span class="icon-line line-long"></span>
+                    <div class="icon-circle"></div>
+                    <div class="icon-fix"></div>
+                </div>
+            </div>
+            <h2 id="welcomeText" style="color: #0a1128; margin-top: 20px;"></h2>
+            <p style="color: #10b981; font-weight: 600; font-size: 14px; margin: 5px 0 0 0;">Crew Member Verified Successfully</p>
+        </div>
+    </div>
+
+    <div id="systemScreen" class="system-wrapper">
+        <header class="main-header">
+            <div class="header-left">
+                <img src="png.png" alt="NCSC Logo" class="sys-logo">
+                <div class="header-text">
+                    <!-- EXACT HEADINGS ALIGNED TO THE RED CIRCLE MATCH IN EDITED-IMAGE.PNG -->
+                    <h1 style="font-weight: 800; font-size: 24px; letter-spacing: -0.3px;">NAKANO COLLEGE SOUNDS CREW</h1>
+                    <p class="tagline" style="margin: 3px 0 0 0; font-size: 12px; font-weight: 700; color: var(--brand-blue);">THE OFFICIAL ASSET & OPERATIONS PLATFORM</p>
+                    <p style="margin: 4px 0 0 0; font-size: 13px; font-weight: 600; color: var(--text-muted);">Logged Member: <span id="userSessionDisplay" style="color: #10b981;">Guest</span></p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="btn-admin btn-admin-green" id="adminConsoleBtn" style="display: none;">User Admin Console</button>
+                <button class="btn-logout" id="logoutBtn">Lock Console</button>
+            </div>
+        </header>
+
+        <div id="adminPanel" class="admin-drawer">
+            <div class="panel-card admin-border">
+                <div class="admin-header-row">
+                    <h4>Crew Access Authorization Registry</h4>
+                    <button class="btn-close-admin" onclick="toggleAdminPanel(false)">✕ Close Panel</button>
+                </div>
+                <div class="admin-split">
+                    <form id="addMemberForm" class="compact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="newUsername">New Username</label>
+                                <input type="text" id="newUsername" placeholder="e.g., crew member" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="newPassword">Assign Password</label>
+                                <input type="password" id="newPassword" placeholder="••••" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-primary space-top">Register Crew Profile</button>
+                    </form>
+                    <div class="authorized-list-box">
+                        <label>Active Authorized Users (Manage Profiles):</label>
+                        <ul id="memberList" class="compact-member-list">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <main class="dashboard-grid">
+            
+            <section class="control-panel">
+                <div class="panel-card" style="margin-bottom: 20px;">
+                    <h3>Register New Gear</h3>
+                    <form id="itemForm" class="compact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="itemCode">Item Code</label>
+                                <input type="text" id="itemCode" placeholder="e.g., MIC-01" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="itemName">Item Name / Model</label>
+                                <input type="text" id="itemName" placeholder="e.g., Shure SM58" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="itemCategory">Category</label>
+                                <select id="itemCategory" required>
+                                    <option value="Speakers">Speakers</option>
+                                    <option value="Microphones">Microphones</option>
+                                    <option value="Cables/Wiring">Cables / Wiring</option>
+                                    <option value="Mixers/Amps">Mixers & Amps</option>
+                                    <option value="Accessories">Accessories</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="itemQty">Store Qty</label>
+                                <input type="number" id="itemQty" min="0" placeholder="0" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="itemDesc">Description & Technical Details</label>
+                            <input type="text" id="itemDesc" placeholder="e.g., Cardioid dynamic vocal microphone" required>
+                        </div>
+
+                        <button type="submit" class="btn-primary space-top">Register to Store</button>
+                    </form>
+                </div>
+            </section>
+
+            <section class="inventory-display">
+                <div class="panel-card main-dispatch-border">
+                    <div class="inventory-header-action-row">
+                        <h3>Current Store Inventory Checklist</h3>
+                        <span class="selection-counter-badge" id="globalSelectionCount">0 Items Marked</span>
+                    </div>
+                    
+                    <div class="table-responsive compact-table-wrapper" style="max-height: 400px; margin-bottom: 20px;">
+                        <table class="compact-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 40px; text-align: center;">Select</th>
+                                    <th>Code</th>
+                                    <th>Item / Model</th>
+                                    <th>Category</th>
+                                    <th>In Store</th>
+                                    <th style="width: 140px; text-align: center;">Dispatch Quantity</th>
+                                    <th style="text-align: right;">Inventory Control</th>
+                                </tr>
+                            </thead>
+                            <tbody id="inventoryBody">
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="mega-dispatch-bar white-variant">
+                        <div class="dispatch-inputs">
+                            <label for="dispatchLocation">Target Operational Vector / Location Venue</label>
+                            <input type="text" id="dispatchLocation" placeholder="e.g., Nakano Main Basketball Court / Main Auditorium Hall" autocomplete="off">
+                        </div>
+                        <button type="button" class="btn-mega-dispatch" id="bulkDispatchBtn">
+                            <span class="btn-icon-pulse">⚡</span> DISPATCH SELECTED BATCH TO FIELD
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="logistics-display">
+                <div class="panel-card">
+                    <div class="ledger-header-row">
+                        <h3>Active Field Operations (Checked Out Gear Ledger)</h3>
+                        <button type="button" class="btn-download-report" id="downloadReportBtn">
+                            📥 Download Field Report
+                        </button>
+                    </div>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Code</th>
+                                    <th>Item Name</th>
+                                    <th>Qty Out</th>
+                                    <th>Dispatched To (Name/ID)</th>
+                                    <th>Location</th>
+                                    <th>Out Date/Time</th>
+                                    <th>Status Tracking / Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="checkoutBody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="system-footer">
+            <p>2026 All Rights Reserved &copy; Nakano College Sound Crew</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
