@@ -289,3 +289,109 @@ tr:hover { background-color: #f8fafc; }
         margin-bottom: 20px !important;
     }
 }
+/* --- LOGIN SCREEN LAYOUT CORRECTION --- */
+.gate-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #0f172a; /* Dark sleek background */
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
+}
+
+.gate-card {
+    background: #ffffff;
+    padding: 40px 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+.gate-logo {
+    max-width: 180px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.gate-card h2 {
+    color: #1e3a8a;
+    font-size: 24px;
+    margin: 10px 0 5px 0;
+    font-weight: 700;
+}
+
+.subtitle {
+    color: #64748b;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+.input-group {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 13px;
+    color: #334155;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 15px;
+    background-color: #f8fafc;
+    color: #1e293b;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #2563eb;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.primary-btn {
+    width: 100%;
+    padding: 14px;
+    background: #1e40af;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    margin-top: 10px;
+}
+
+.primary-btn:hover {
+    background: #1d4ed8;
+}
+
+.error-msg {
+    color: #dc2626;
+    font-size: 13px;
+    font-weight: 600;
+    margin-top: 15px;
+}
+
+.footer-credit {
+    margin-top: 35px;
+    font-size: 11px;
+    color: #94a3b8;
+}
